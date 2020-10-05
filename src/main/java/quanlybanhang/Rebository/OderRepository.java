@@ -7,4 +7,5 @@ import quanlybanhang.Entity.OderEntity;
 public interface OderRepository  extends JpaRepository<OderEntity, Integer>{
  
 	
+	
 }
