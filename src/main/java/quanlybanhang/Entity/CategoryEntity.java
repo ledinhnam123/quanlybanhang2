@@ -22,7 +22,6 @@ public class CategoryEntity {
 	@Column(name="category_name")
 	private String categoryName;
 	
-	
 
 	public CategoryEntity() {
 		
@@ -50,7 +49,6 @@ public class CategoryEntity {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
 	
 	
 	

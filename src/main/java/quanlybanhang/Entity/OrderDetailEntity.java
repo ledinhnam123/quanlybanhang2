@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name ="oder_detail")
-public class OderDetail {
+public class OrderDetailEntity {
 
 	
 	@Id
@@ -17,46 +17,63 @@ public class OderDetail {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name ="oder_id")
-	private int oderId;
+	@Column(name ="product_id")
+	private int productId ;
+	@Column(name = "user_order_id")
+	private int orderId;
 	
-	@Column(name="total")
-	private double total;
+	@Column(name ="quantity")
+	private double quantity;
 
-	public OderDetail() {
-		
-	}
 	
-	public OderDetail(int id, int oderId, double total) {
+	public OrderDetailEntity() {
 		
-		this.id = id;
-		this.oderId = oderId;
-		this.total = total;
 	}
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getOderId() {
-		return oderId;
+
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setOderId(int oderId) {
-		this.oderId = oderId;
+
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public double getTotal() {
-		return total;
+
+	public int getOrderId() {
+		return orderId;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
+
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+
+	
+	
+	
 	
 	
 	

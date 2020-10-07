@@ -12,6 +12,9 @@ public class CartDAO {
 
 	// thêm giỏ hàng
 	ProductDAO productDao = new ProductDAO();
+	
+	
+	
 
 	public HashMap<Integer, CartDTO> AddCart(int id, HashMap<Integer, CartDTO> cart) {
 

@@ -2,58 +2,47 @@ package quanlybanhang.DTO;
 
 import org.modelmapper.ModelMapper;
 
-import quanlybanhang.Entity.OderEntity;
+import quanlybanhang.Entity.OrderEntity;
 
-public class OderDTO {
+public class OrderDTO {
 
 	private int id;
-	private String productName;
-	private String nameUser;
-	private double quantily;
+	private int userId;
 	
+
+	public OrderDTO() {
+
+	}
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getNameUser() {
-		return nameUser;
-	}
 
-	public void setNameUser(String nameUser) {
-		this.nameUser = nameUser;
-	}
-
-	public double getQuantily() {
-		return quantily;
-	}
-
-	public void setQuantily(double quantily) {
-		this.quantily = quantily;
-	}
-
-	public static OderDTO mapperToDTO(OderEntity oderEntity) {
-
+	// DL móc tư csdl lên
+	public static OrderDTO mapperToDTO(OrderEntity orderEntity) {
 		ModelMapper mapper = new ModelMapper();
-		return mapper.map(oderEntity, OderDTO.class);
+		return mapper.map(orderEntity, OrderDTO.class);
 	}
 
-	public static OderEntity mapperToEntity(OderDTO oderDTO) {
-
+	// DL từ client truyền xuống
+	public static OrderEntity mapperToEntity(OrderDTO ordertDTO) {
 		ModelMapper mapper = new ModelMapper();
-		return mapper.map(oderDTO, OderEntity.class);
+		return mapper.map(ordertDTO, OrderEntity.class);
 	}
 
 }

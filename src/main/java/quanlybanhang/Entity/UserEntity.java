@@ -15,7 +15,7 @@ public class UserEntity {
 	@Column(name="id")
 	private  int id;
 	
-	@Column(name="name_user")
+	@Column(name="user_name")
 	private String nameUser;
 
 	public UserEntity() {
@@ -44,8 +44,4 @@ public class UserEntity {
 	}
 	
 
-
-	
-
-	
 }

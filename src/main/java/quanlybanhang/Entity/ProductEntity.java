@@ -54,8 +54,6 @@ public class ProductEntity {
 		this.id = id;
 	}
 
-
-
 	public String getProductName() {
 		return productName;
 	}
