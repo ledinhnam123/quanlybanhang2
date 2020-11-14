@@ -11,10 +11,8 @@ import quanlybanhang.DTO.OrderDetailDTO;
 import quanlybanhang.Entity.OrderDetailEntity;
 import quanlybanhang.Entity.OrderEntity;
 import quanlybanhang.Entity.ProductEntity;
-import quanlybanhang.Rebository.OrderDetailRepository;
 import quanlybanhang.Rebository.OrderRepository;
 import quanlybanhang.Rebository.ProductRepository;
-import quanlybanhang.Request.OrderManyProductRequest;
 import quanlybanhang.Request.ProductOrderRequest;
 import quanlybanhang.Response.OrderRespone;
 import quanlybanhang.Service.OrderDetailService;
@@ -30,9 +28,6 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired
-	private OrderDetailRepository orderDetailrepository;
-	
 	
 	@Override
 	public OrderDetailEntity saveOrderDertail(OrderDetailDTO orDTO) {
@@ -42,13 +37,13 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 
 	@Override
-	public OrderDetailEntity save(int orderId, int productId, double quantity) {
+	public OrderDetailEntity save(int orderId, int productId, double quantity,int status) {
 		
 		List<OrderEntity> od = orderRipository.findById(orderId);
 		Optional<ProductEntity> pr = productRepository.findById(productId);
 		
 		if(od != null && pr!= null) {
-		return orderDetailDAO.save(orderId, productId, quantity);
+		return orderDetailDAO.save(orderId, productId, quantity, status);
 		}
 		return null;
 		//bool exist = list.Any(item => item == "blue");
@@ -77,8 +72,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 
 	@Override
-	public boolean addnNewOrderDetail(int orderId, List<ProductOrderRequest> request) {
-		return orderDetailDAO.addnNewOrderDetail(orderId, request);
+	public double addnNewOrderDetail(int orderId, List<ProductOrderRequest> request,int userType) {
+		return orderDetailDAO.addnNewOrderDetail(orderId, request,userType);
 		
 	}
 

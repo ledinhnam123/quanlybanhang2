@@ -16,6 +16,11 @@ public interface ProductService    {
 	public ProductEntity finOne(int id);
 	public void deleteByID(int id);
 	public List<ProductDTO> findByCategoryId(int categotyid);
+	public List<ProductDTO> LaySanPhamTheoTen(String productName);
+	
+	public ProductDTO getByproducttId(Integer id);
+	
+
 	
 
 }

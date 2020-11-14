@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -68,5 +69,20 @@ public class ProductAPI {
 	public List<ProductDTO> getProductCategoryID(@PathVariable("categoryid") int categoryid){
 		return (List<ProductDTO>)productServiceImpl.findByCategoryId(categoryid);
 	}
+	
+	//List Sản phẩm có tên theo Like:Done
+	
+	@GetMapping("/like_name/{productName}")
+	public List<ProductDTO> getProductLikeName(@PathVariable("productName") String productName){
+		return (List<ProductDTO>) productServiceImpl.LaySanPhamTheoTen(productName);
+	}
+	//lấy sản phẩm theo id(@Query) ->done
+	@GetMapping("/get_name/{id}")
+	public ProductDTO getProductNameQ(@PathVariable("id") int id) {
+		
+		return productServiceImpl.getByproducttId(id);
+	}
+	
 
+	
 }

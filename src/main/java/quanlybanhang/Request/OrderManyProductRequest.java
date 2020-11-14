@@ -5,6 +5,7 @@ import java.util.List;
 public class OrderManyProductRequest {
 
 	private int userId;
+	
 	private List<ProductOrderRequest> listProducts;
 	
 	
@@ -20,6 +21,8 @@ public class OrderManyProductRequest {
 	public void setListProducts(List<ProductOrderRequest> listProducts) {
 		this.listProducts = listProducts;
 	}
+	
+	
 	
 	
 }

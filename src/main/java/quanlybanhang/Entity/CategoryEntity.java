@@ -7,37 +7,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name ="category")
+@Table(name="category")
 public class CategoryEntity {
 
-	
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="category_name")
+
+	@Column(name = "category_name")
 	private String categoryName;
-	
 
 	public CategoryEntity() {
-		
+
 	}
-	
-	
+
 	public CategoryEntity(int id, String categoryName) {
-		
+
 		this.id = id;
 		this.categoryName = categoryName;
 	}
 
-
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -49,7 +44,5 @@ public class CategoryEntity {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
-	
-	
+
 }

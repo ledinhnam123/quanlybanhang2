@@ -46,6 +46,22 @@ public class ProductServiceImpl implements ProductService{
 		return productDAO.findByCategory(categoryid);
 	}
 
+	@Override
+	public List<ProductDTO> LaySanPhamTheoTen(String productName) {
+		
+		return productDAO.getProductLikeName("%"+productName+"%");
+	}
+
+	@Override
+	public ProductDTO getByproducttId(Integer id) {
+		
+		return productDAO.getByproducttId(id);
+	}
+
+	
+
+
+
 
 	
 

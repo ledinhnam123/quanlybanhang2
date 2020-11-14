@@ -3,7 +3,6 @@ package quanlybanhang.Request;
 public class ProductOrderRequest {
 	
 	private int productId;
-	
 	private int qty;
 
 	public int getProductId() {
@@ -21,6 +20,8 @@ public class ProductOrderRequest {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
+
+
 
 
 	

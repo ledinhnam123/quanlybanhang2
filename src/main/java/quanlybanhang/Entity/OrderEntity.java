@@ -12,12 +12,16 @@ import javax.persistence.Table;
 public class OrderEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
 	@Column(name = "user_id")
 	private int userId;
+	@Column(name="total_money_order")
+	private double totalMoneyOrder;
+	@Column(name="total_money_vat")
+	private double totalMoneyVat;
+
 
 	public int getId() {
 		return id;
@@ -34,7 +38,24 @@ public class OrderEntity {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
+	public double getTotalMoneyOrder() {
+		return totalMoneyOrder;
+	}
+
+	public void setTotalMoneyOrder(double totalMoneyOrder) {
+		this.totalMoneyOrder = totalMoneyOrder;
+	}
+
+	public double getTotalMoneyVat() {
+		return totalMoneyVat;
+	}
+
+	public void setTotalMoneyVat(double totalMoneyVat) {
+		this.totalMoneyVat = totalMoneyVat;
+	}
+
 	
-	
+
 
 }

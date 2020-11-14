@@ -16,11 +16,13 @@ public interface OrderDetailService {
 	
 	public OrderDetailEntity saveOrderDertail(OrderDetailDTO orDTO);
 	
-	public OrderDetailEntity save(int orderId, int productId, double quantity);
+	public OrderDetailEntity save(int orderId, int productId, double quantity,int tatus);
 	
-	public boolean addnNewOrderDetail(int orderId, List<ProductOrderRequest> request);
+	public double addnNewOrderDetail(int orderId, List<ProductOrderRequest> request,int userType);
 	
 	public OrderRespone  findByIdOrder(int orderId);
+	
+
 	
 }
 

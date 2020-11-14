@@ -7,12 +7,29 @@ public class OrderRespone {
 
 	private  int orderId;
 	private double totalPrice;
+	private int status;
 	
+
 	private List<ListProductOrder> productsOrder;
 	
 	public List<ListProductOrder> getProductsOrder() {
 		return productsOrder;
 	}
+	
+
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 
 
 
@@ -54,6 +71,7 @@ public class OrderRespone {
 	public class ListProductOrder{
 		private String productName;
 		private double quantity;
+		private double totalPriceProduct; 
 		public String getProductName() {
 			return productName;
 		}
@@ -66,6 +84,13 @@ public class OrderRespone {
 		public void setQuantity(double quantity) {
 			this.quantity = quantity;
 		}
+		public double getTotalPriceProduct() {
+			return totalPriceProduct;
+		}
+		public void setTotalPriceProduct(double totalPriceProduct) {
+			this.totalPriceProduct = totalPriceProduct;
+		}
+		
 		
 		
 		

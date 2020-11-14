@@ -1,5 +1,7 @@
 package quanlybanhang.DTO;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 
 import quanlybanhang.Entity.ProductEntity;
@@ -37,8 +39,12 @@ public class ProductDTO {
 		this.categoryName = categoryName;
 	}
 	
+	public static ProductEntity mapperEntity(List<ProductDTO> productDTO) {
+		ModelMapper mapper = new ModelMapper();
+		return mapper.map(productDTO, ProductEntity.class);
+	}
 	//DL móc tư csdl lên
-	public static ProductDTO mapperToDTO(ProductEntity productEntity) {
+		public static ProductDTO mapperToDTO(ProductEntity productEntity) {
 		ModelMapper mapper = new ModelMapper();
 		return mapper.map(productEntity, ProductDTO.class);
 	}
