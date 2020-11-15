@@ -1,6 +1,8 @@
 package quanlybanhang.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,11 +10,15 @@ import org.springframework.stereotype.Service;
 import net.minidev.json.JSONObject;
 import quanlybanhang.DAO.OrderDAO;
 import quanlybanhang.DTO.OrderDTO;
+import quanlybanhang.DTO.ProductDTO;
 import quanlybanhang.Entity.OrderDetailEntity;
 import quanlybanhang.Entity.OrderEntity;
+import quanlybanhang.Entity.ProductEntity;
 import quanlybanhang.Entity.UserEntity;
+import quanlybanhang.Entity.UserNotifiCationEntity;
 import quanlybanhang.Rebository.OrderDetailRepository;
 import quanlybanhang.Rebository.OrderRepository;
+import quanlybanhang.Rebository.UserNotifiCationRepository;
 import quanlybanhang.Rebository.UserRepository;
 import quanlybanhang.Request.OrderManyProductRequest;
 import quanlybanhang.Request.ProductOrderRequest;
@@ -34,6 +40,13 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 	@Autowired
 	private OrderDetailRepository orderDetailRepository;
+
+	@Autowired
+	private ProductServiceImpl productServiceIpml;
+	@Autowired
+	private UserNotifiCationRepository userNotifiCation;
+
+	
 	
 
 	@Override
@@ -56,9 +69,13 @@ public class OrderServiceImpl implements OrderService {
 			
 			OrderEntity order = orderDao.saveOrder(request.getUserId());
 			UserEntity user = userRepository.findOne(request.getUserId());
-		
+			
+			
+			String message = "";
+			int code = -1;
 			if (order != null) {
 				// order.setTotalMoneyVat();
+				
 				double totalMoney = orderDetailServiceImpl.addnNewOrderDetail(order.getId(), request.getListProducts(),
 						user.getType());
 
@@ -78,7 +95,31 @@ public class OrderServiceImpl implements OrderService {
 //				user1.setType(lkh.getCode());
 //
 //			user1 = userRepository.saveAndFlush(user1);
+					
 					order =orderRepository.saveAndFlush(order);
+					if(order!=null) {
+//						List<String> listProductsName= request.getListProducts().stream().map(x->{
+//							ProductEntity pro = productServiceIpml.finOne(x.getProductId());
+//							return pro.getProductName();
+//						}).collect(Collectors.toList());
+						
+						List<String> listProductName = new ArrayList<String>();
+						List<ProductOrderRequest> listProducts = request.getListProducts();
+						
+						for(int i = 0 ; i < listProducts.size() ; i++) {
+							ProductOrderRequest proOrder = listProducts.get(i);
+							ProductDTO pro = productServiceIpml.getByproducttId(proOrder.getProductId());
+							message += "Product " + (i + 1) + ". Product Name: " + pro.getProductName() + ", Quantity: " + proOrder.getQty() + "\n";
+							listProductName.add(pro.getProductName());
+						}		
+						code=1;
+						UserNotifiCationEntity userNoti = new UserNotifiCationEntity();
+						userNoti.setMessage(message);
+						userNoti.setStatusMessage(code);
+						userNoti.setUserId(order.getUserId());
+						
+						userNoti =userNotifiCation.saveAndFlush(userNoti);
+					}
 
 				}
 				js.put("AddOrder", order);
@@ -93,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 	}
-	
+	//update Status
 	public JSONObject UpdateStatus(int orderId) {
 		JSONObject js = new JSONObject();
 		try {
@@ -109,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
 				
 			   }
 	
-			if(order!=null) {
+			 if(order!=null) {
 				
 				double totalMoneyUsers = user2.getLevel() +  order.getTotalMoneyOrder();
 				
