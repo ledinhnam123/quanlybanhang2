@@ -41,9 +41,7 @@ public class AdmindSendMessageDAO {
 				}
 			
 		}
-				
-			
-		
+	
 		return true;
 
 	}
