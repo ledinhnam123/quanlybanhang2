@@ -21,7 +21,9 @@ public class UserNotifiCationEntity {
 	private int statusMessage;
 	@Column(name="type")
 	private int type;
-	
+	@Column(name="code")
+	private int code;
+
 	
 	public int getId() {
 		return id;
@@ -53,6 +55,14 @@ public class UserNotifiCationEntity {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	
 	
 	
 	

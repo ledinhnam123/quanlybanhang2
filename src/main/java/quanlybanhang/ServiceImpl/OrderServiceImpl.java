@@ -112,16 +112,17 @@ public class OrderServiceImpl implements OrderService {
 							message += "Product " + (i + 1) + ". Product Name: " + pro.getProductName() + ", Quantity: " + proOrder.getQty() + "\n";
 							listProductName.add(pro.getProductName());
 						}		
-						code=1;
+						code=1;//order thành công
 						UserNotifiCationEntity userNoti = new UserNotifiCationEntity();
 						userNoti.setMessage(message);
-						userNoti.setStatusMessage(code);
+						userNoti.setCode(code);
 						userNoti.setUserId(order.getUserId());
-						
 						userNoti =userNotifiCation.saveAndFlush(userNoti);
+						js.put("NotifyOrder",userNoti );
 					}
-
+					
 				}
+			
 				js.put("AddOrder", order);
 				return js;
 			}

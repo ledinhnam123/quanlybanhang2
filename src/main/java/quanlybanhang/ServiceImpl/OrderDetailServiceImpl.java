@@ -81,7 +81,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Override
 	public OrderRespone findByIdOrder(int orderId) {
 		
-		return orderDetailDAO.findByIdOrder(orderId);
+		return orderDetailDAO.findByIdOrderfindByIdOrder(orderId);
 	}
 
 }

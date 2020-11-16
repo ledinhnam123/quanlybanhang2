@@ -59,6 +59,7 @@ public class OrderDetailDAO {
 				return 0;
 			
 			for(ProductOrderRequest pro: request) {
+				
 				OrderDetailEntity orderDetail = new OrderDetailEntity();
 				orderDetail.setOrderId(orderId);
 				orderDetail.setProductId(pro.getProductId());
@@ -86,7 +87,7 @@ public class OrderDetailDAO {
 	
 	
 	//hiển thị chi tiết đơn hàng
-	public OrderRespone  findByIdOrder(  int  orderId) {
+	public OrderRespone  findByIdOrderfindByIdOrder(  int  orderId) {
 		List<OrderDetailEntity> orderDetailEntity = orderDetailRepository.findByOrderId(orderId);
 		
 		double totalPrice = orderDetailEntity.stream(). mapToDouble(x ->{
