@@ -11,8 +11,9 @@ import quanlybanhang.Response.NotificationResponse;
 @Service
 public interface UserNotificationService {
 
-	public NotificationResponse findByIdUserId(int userId);
-	public ListNotifyResponse getNotificationById(int id, int userId);
-	
-	public boolean sendMessage(List<MessageRequest> request);
+public NotificationResponse findByIdUserId(int userId);
+public ListNotifyResponse getNotificationById(int id, int userId);
+public boolean sendMessage(List<MessageRequest> request);
+public boolean sendMessAllUser(String message);
+
 }

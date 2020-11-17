@@ -1,5 +1,7 @@
 package quanlybanhang.Entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,14 +17,16 @@ public class UserNotifiCationEntity {
 	private int id;
 	@Column(name="user_id")
 	private int userId;
-	@Column(name="message")
-	private String message;
 	@Column(name="status")
 	private int statusMessage;
 	@Column(name="type")
 	private int type;
 	@Column(name="code")
 	private int code;
+	@Column(name="created_date")
+	private Date createDate;
+	@Column(name="updated_time")
+	private Date updateDate;
 
 	
 	public int getId() {
@@ -37,12 +41,7 @@ public class UserNotifiCationEntity {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
+	
 	public int getStatusMessage() {
 		return statusMessage;
 	}
@@ -60,6 +59,18 @@ public class UserNotifiCationEntity {
 	}
 	public void setCode(int code) {
 		this.code = code;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 	
 	

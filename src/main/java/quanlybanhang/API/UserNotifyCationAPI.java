@@ -19,7 +19,7 @@ private  UserNotificationServiceImpl usernotiServiImpl;
 
 	@GetMapping("/get_all_notify")
 	public ResponseEntity<?> getAllNotify(@RequestParam("userId") int userId){
-		return ResponseEntity.ok(usernotiServiImpl.findByIdUserId(userId)); 
+		return ResponseEntity.ok(usernotiServiImpl.findByIdUserId(userId));
 	}
 	
 	@GetMapping("/get_notifyById")

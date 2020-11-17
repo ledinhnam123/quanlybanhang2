@@ -1,8 +1,9 @@
 package quanlybanhang.Response;
 
 public class ListNotifyResponse {
+	
 	private String message;
-
+	
 	private int status;
 
 	public int getStatus() {

@@ -37,6 +37,17 @@ public class UserNotificationServiceImpl implements UserNotificationService {
 		
 		return adminsendMessage.sendMessage(request);
 	}
+//all
+	@Override
+	public boolean sendMessAllUser(String message) {
+		try {
+			
+			return adminsendMessage.sendMessAllUser(message);
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 
 
 

@@ -23,6 +23,10 @@ public class AdminSendMessageAPI {
 		
 		return ResponseEntity.ok(userNotifiServiceImpl.sendMessage(request.getListMess()));
 	}
-	
-	
+	//All
+	@PostMapping("/api/adll_user")
+	public ResponseEntity<?> senMesAllUser(@RequestBody String mess ) {
+		
+		return ResponseEntity.ok(userNotifiServiceImpl.sendMessAllUser(mess));
+	}
 }

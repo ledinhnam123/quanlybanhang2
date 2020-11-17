@@ -1,8 +1,8 @@
 package quanlybanhang.ServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,12 @@ import net.minidev.json.JSONObject;
 import quanlybanhang.DAO.OrderDAO;
 import quanlybanhang.DTO.OrderDTO;
 import quanlybanhang.DTO.ProductDTO;
+import quanlybanhang.Entity.MessageEntity;
 import quanlybanhang.Entity.OrderDetailEntity;
 import quanlybanhang.Entity.OrderEntity;
-import quanlybanhang.Entity.ProductEntity;
 import quanlybanhang.Entity.UserEntity;
 import quanlybanhang.Entity.UserNotifiCationEntity;
+import quanlybanhang.Rebository.MessageRepository;
 import quanlybanhang.Rebository.OrderDetailRepository;
 import quanlybanhang.Rebository.OrderRepository;
 import quanlybanhang.Rebository.UserNotifiCationRepository;
@@ -45,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
 	private ProductServiceImpl productServiceIpml;
 	@Autowired
 	private UserNotifiCationRepository userNotifiCation;
+	@Autowired
+	private MessageRepository messageRepo;
 
 	
 	
@@ -114,11 +117,22 @@ public class OrderServiceImpl implements OrderService {
 						}		
 						code=1;//order thành công
 						UserNotifiCationEntity userNoti = new UserNotifiCationEntity();
-						userNoti.setMessage(message);
+						Date date1 = new Date();
 						userNoti.setCode(code);
 						userNoti.setUserId(order.getUserId());
+						userNoti.setCreateDate(date1);
 						userNoti =userNotifiCation.saveAndFlush(userNoti);
+						
+						if(userNoti!=null) {
+							MessageEntity mess = new MessageEntity();
+							mess.setNotifiId(userNoti.getId());
+							mess.setMessage(message);
+							messageRepo.saveAndFlush(mess);
+							
+						}
+		
 						js.put("NotifyOrder",userNoti );
+					
 					}
 					
 				}
