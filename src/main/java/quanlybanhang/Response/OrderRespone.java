@@ -17,8 +17,6 @@ public class OrderRespone {
 	}
 	
 
-
-
 	public int getStatus() {
 		return status;
 	}

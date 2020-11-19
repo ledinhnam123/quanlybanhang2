@@ -3,6 +3,7 @@ package quanlybanhang.API;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.minidev.json.JSONObject;
 import quanlybanhang.DTO.ProductDTO;
 import quanlybanhang.Entity.ProductEntity;
+import quanlybanhang.Request.FinProductUserAgencyRequest;
+import quanlybanhang.Service.ProductService;
 import quanlybanhang.ServiceImpl.ProductServiceImpl;
 
 @RestController
@@ -22,6 +27,9 @@ public class ProductAPI {
 	
 	@Autowired
 	private  ProductServiceImpl productServiceImpl;
+	@Autowired
+	private ProductService productService;
+	
 
 	@RequestMapping("/get_all_product")
 	public List<ProductDTO> getAll(){
@@ -82,6 +90,33 @@ public class ProductAPI {
 		
 		return productServiceImpl.getByproducttId(id);
 	}
+	@GetMapping("api/getAllProduct")
+	public JSONObject getAllProduct() {
+		return productServiceImpl.getAllProduct();
+	}
+	@GetMapping("api/getProductById")
+	public JSONObject getProductById(@RequestParam("productId") int productId) {
+		return productService.findProductById(productId);
+	}
+	
+	///Product By UserAgencyId
+	@GetMapping("/user_Agency_product")
+	public ResponseEntity<?> getProductofUserAgency(@RequestBody FinProductUserAgencyRequest request) {
+		return ResponseEntity.ok(productService.getProuctByUserAgencyId(request));
+	}
+	
+	//GetProductBy UserId
+	
+	@GetMapping("/userId_product")
+	public ResponseEntity<?> getProductByUserId(@RequestParam("userId") int userId){
+		return ResponseEntity.ok(productService.getProductByIdUser(userId));
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<?> searchProductByCategory(@RequestParam("id") int id, @RequestParam("keysearch") String keysearch){
+		return  ResponseEntity.ok(productService.searchProductByKeySearch(id, keysearch));
+	}
+	
 	
 
 	

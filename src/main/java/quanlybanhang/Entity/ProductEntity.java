@@ -25,6 +25,9 @@ public class ProductEntity {
 	@Column(name = "category_id")
 	private int categoryId;
 
+	@Column(name="quanty")
+	private int quanty;
+
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -67,5 +70,14 @@ public class ProductEntity {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public int getQuanty() {
+		return quanty;
+	}
+
+	public void setQuanty(int quanty) {
+		this.quanty = quanty;
+	}
+	
 
 }

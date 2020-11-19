@@ -1,16 +1,27 @@
 package quanlybanhang.DAO;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.type.CollectionLikeType;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+
+import javassist.bytecode.stackmap.TypeData.ClassName;
 import quanlybanhang.DTO.ProductDTO;
 import quanlybanhang.Entity.CategoryEntity;
 import quanlybanhang.Entity.ProductEntity;
+import quanlybanhang.Entity.UserAgencyEntity;
+import quanlybanhang.Entity.UserEntity;
 import quanlybanhang.Rebository.CategoryRepository;
 import quanlybanhang.Rebository.ProductRepository;
+import quanlybanhang.Rebository.UserAgencyRepository;
+import quanlybanhang.Rebository.UserRepository;
 
 @Component
 public class ProductDAO {
@@ -20,6 +31,11 @@ public class ProductDAO {
 
 	@Autowired
 	private CategoryRepository cateRepository;
+	@Autowired
+	private UserAgencyRepository userAgencyRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	// xuất toàn bộ
 
@@ -94,6 +110,44 @@ public class ProductDAO {
 		return dto;
 	}
 
-	
+	// FindAllProductById Agency
+	public List<ProductEntity> getProuctByUserAgencyId(int id) {
+		UserAgencyEntity userAgencyEntity = userAgencyRepo.findOne(id);
+		if (userAgencyEntity != null) {
+			List<ProductEntity> product = productRepository.findProductByUserAgencyId(id);
+			return product;
+		} else {
+			return null;
+		}
+
+	}
+
+//find productBy User Id
+	public List<ProductEntity> getProductByIdUser(int userId) {
+		UserEntity user = userRepo.findOne(userId);
+		if (user != null) {
+
+			List<ProductEntity> product = productRepository.findfProductByUserIdAndType(userId);
+			// product.stream().sorted().collect(Collectors.toList());
+			// product.stream().sorted(Comparator.comparing(ProductEntity::getId));
+			product = product.stream().sorted(Comparator.comparingInt(ProductEntity::getId))
+					.collect(Collectors.toList());
+			return product;
+		} else {
+			return null;
+		}
+
+	}
+
+	public List<ProductEntity> searchProductByKeySearch(int id, String keysearch) {
+		UserAgencyEntity userA = userAgencyRepo.findOne(id);
+		if (userA != null) {
+			List<ProductEntity> productEntities = productRepository.searchProductByUserAgency(id, keysearch);
+			return productEntities;
+		} else {
+			return null;
+		}
+
+	}
 
 }

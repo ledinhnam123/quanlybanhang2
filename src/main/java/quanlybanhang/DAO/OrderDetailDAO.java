@@ -54,6 +54,7 @@ public class OrderDetailDAO {
 		try {
 			
 			double totalMoney=0;
+			
 			double VAT = this.getVAT(userType);
 			if(VAT == -1)
 				return 0;
@@ -61,16 +62,27 @@ public class OrderDetailDAO {
 			for(ProductOrderRequest pro: request) {
 				
 				OrderDetailEntity orderDetail = new OrderDetailEntity();
+				
+			
 				orderDetail.setOrderId(orderId);
 				orderDetail.setProductId(pro.getProductId());
+				
 				ProductEntity product = productRepository.findOne(pro.getProductId());
+				
 				double total= product.getPrice()*pro.getQty() - product.getPrice()*pro.getQty()*VAT;
+				
+			//	double totalLess = product.getPrice()*pro.getQty()*VAT;
 				orderDetail.setTotalMoneyProduct(total);
+				
 				orderDetail.setQuantity(pro.getQty());
 				orderDetail = orderDetailRepository.saveAndFlush(orderDetail);
+		
+				int quantyProduct= product.getQuanty()-pro.getQty();
+				product.setQuanty(quantyProduct);
+				product = productRepository.saveAndFlush(product);
 				totalMoney+=total;
-				
-				if(orderDetail == null) {
+				//totalVAT+=totalLess;
+				if(orderDetail == null	) {
 					return 0;
 				}
 			}
