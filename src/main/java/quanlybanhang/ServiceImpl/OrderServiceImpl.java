@@ -85,19 +85,7 @@ public class OrderServiceImpl implements OrderService {
 				if (totalMoney > 0) {
 
 					order.setTotalMoneyOrder(totalMoney);
-//					
-//					UserEntity user1 = userRepository.findOne(request.getUserId());
-//					
-//					//khi nò admin duyet thì mới cập nhật total tổng tiền vào level trong bảng user
-//					
-//				double totalMoneyUser = user1.getLevel() + totalMoney;
-//				
-//				user1.setLevel(totalMoneyUser);
-//				LoaiKhachHang lkh = this.checkUserType(totalMoneyUser);
-//
-//				user1.setType(lkh.getCode());
-//
-//			user1 = userRepository.saveAndFlush(user1);
+
 					
 					order =orderRepository.saveAndFlush(order);
 					if(order!=null) {
@@ -161,8 +149,7 @@ public class OrderServiceImpl implements OrderService {
 			for(OrderDetailEntity listOrderDetail:orderDetailEntities ) {
 				if(listOrderDetail.getStatus()==0) {
 					listOrderDetail.setStatus(1);
-				 }
-				
+				 }	
 				
 			   }
 	

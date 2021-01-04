@@ -77,6 +77,7 @@ public class CreateProductServiceImpl implements CreateProductService {
 		try {
 
 			List<ProductDetailEntity> productDeTail = new ArrayList<ProductDetailEntity>();
+			
 			UserAgencyEntity userAgen = userAgencyRepo.findOne(request.getId());
 
 			if (userAgen != null) {

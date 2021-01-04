@@ -8,7 +8,7 @@ public class Productdtotest {
 	private String productName;
 	private double price;
 	private int categoryId;
-	private int type;
+
 	private int quanty;
 	public Productdtotest() {
 		
@@ -17,7 +17,7 @@ public class Productdtotest {
 		
 		this.id = product.getId();
 		this.productName = product.getProductName();
-	
+		
 		this.quanty = product.getQuanty();
 		this.price = product.getPrice();
 		this.categoryId = product.getCategoryId();
@@ -46,12 +46,7 @@ public class Productdtotest {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
+	
 	public int getQuanty() {
 		return quanty;
 	}
